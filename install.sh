@@ -2,7 +2,7 @@
 
 # Define repository
 REPO_URL="https://github.com/naplon74/git_RE.git"
-BRANCH="main"
+BRANCH="dev"
 
 # Define directories
 APP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/gitRE"
@@ -10,7 +10,7 @@ CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/gitRE"
 STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/gitRE"
 BIN_DIR="${XDG_BIN_HOME:-$HOME/.local/bin}"
 
-echo "Installing Git_RE..."
+echo "[INFO] Installing Git_RE v1.2..."
 
 # Check required commands
 for command in git python3 jq; do
@@ -85,10 +85,10 @@ fi
 echo
 echo "[SUCCESS] Git_RE has been installed."
 echo
-echo "Branch:  $BRANCH"
-echo "Command: $BIN_DIR/gitRE"
-echo "Config:  $CONFIG_DIR/config.json"
-echo "State:   $STATE_DIR"
+echo "[INFO] Branch:  $BRANCH"
+echo "[INFO] Command: $BIN_DIR/gitRE"
+echo "[INFO] Config:  $CONFIG_DIR/config.json"
+echo "[INFO] State:   $STATE_DIR"
 echo
 
 # Check if ~/.local/bin is in PATH

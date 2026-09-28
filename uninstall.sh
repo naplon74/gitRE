@@ -6,7 +6,8 @@ CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/gitRE"
 STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/gitRE"
 BIN_DIR="${XDG_BIN_HOME:-$HOME/.local/bin}"
 
-echo "Uninstalling Git_RE..."
+echo "[INFO] Uninstalling Git_RE..."
+echo
 
 # Remove command
 if [[ -L "$BIN_DIR/gitRE" ]]; then
@@ -24,5 +25,5 @@ echo
 echo "[SUCCESS] Git_RE has been uninstalled."
 echo
 echo "[INFO] Your config and state files were kept."
-echo "Config: $CONFIG_DIR"
-echo "State:  $STATE_DIR"
+echo "[INFO] Config: $CONFIG_DIR"
+echo "[INFO] State:  $STATE_DIR"

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-VERSION="v1.1"
+VERSION="v1.2"
 
 # Define XDG directories
 APP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/gitRE"
