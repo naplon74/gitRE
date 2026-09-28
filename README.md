@@ -7,9 +7,10 @@ It scans your system for git repositories, collects their status, and displays a
 ## Features
 
 - Finds all git repositories under your home directory
-- Shows branch and dirty/clean status
+- Shows branch, dirty/clean status and ahead / behind
 - Pretty table output with [rich](https://pypi.org/project/rich/)
-- Configurable path via `config.json`
+- Logs of every run
+- Configurable git and python paths via `config.json`
 
 ## Requirements
 
@@ -17,38 +18,60 @@ It scans your system for git repositories, collects their status, and displays a
 - `git`
 - `jq`
 - `python3`
+- `curl` (for the online install)
 
-Needed for python : [rich](https://pypi.org/project/rich/)
+The Python package [rich](https://pypi.org/project/rich/) is installed automatically by the installer.
 
-## Setup
+## Install
 
-1. Edit `config.json` and set your preferred path (default is /usr/bin/git):
+```bash
+curl -fsSL https://raw.githubusercontent.com/naplon74/git_RE/main/install.sh | bash
+```
+
+Then run it from anywhere:
+
+```bash
+gitRE
+```
+
+To update, run the install command again.
+
+>[!TIP]
+>If `gitRE` isn't found after installing, add `~/.local/bin` to your `PATH`:
+>```bash
+>export PATH="$HOME/.local/bin:$PATH"
+>```
+
+## Configuration
+
+The config file is created by the installer at `~/.config/gitRE/config.json`:
 
 ```json
 {
-    "path_to_git": "/home/yourusername/Projects"
+    "gith_path": "/usr/bin/git",
+    "python3_path": "/home/yourusername/.local/share/gitRE/.venv/bin/python"
 }
-``` 
+```
 
 >[!TIP]
->The default path usualy always works. If you installed git on your system and `/usr/bin/git` isn't the path then use `where git` or `whereis git` to locate it.
+>If Git_RE can't find git, use `where git` or `whereis git` to locate it and update `gith_path`.
 
-2. Make the script executable:
+Logs are saved in `~/.local/state/gitRE/logs.txt`.
+
+## Uninstall
 
 ```bash
-chmod +x src/git_re.sh
+curl -fsSL https://raw.githubusercontent.com/naplon74/git_RE/main/uninstall.sh | bash
 ```
 
-## Usage
-```bash
-./src/git_re.sh
-```
+Your config and logs are kept.
 
-## Project Structure
+## Project Structure (Portable version - v1.2)
 
-    git_ME/
+    git_RE/
     ├── config.json
-    ├── repos_status.json
+    ├── install.sh
+    ├── uninstall.sh
     ├── src/
     │   ├── git_re.sh
     │   └── output.py
@@ -61,6 +84,14 @@ chmod +x src/git_re.sh
 >[!NOTE]
 >This is a demo image.
 >`Dirty` means they are modified, added, or deleted files that haven't been committed yet.
+
+## v1.2
+What's new?
+
+- Added online installer and uninstaller.
+- Config, logs and app files now follow the XDG standard.
+- Added python path to `config.json`.
+- Added check for the `rich` package.
 
 ## v1.1
 What's new?
