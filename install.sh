@@ -2,7 +2,7 @@
 
 # Define repository
 REPO_URL="https://github.com/naplon74/git_RE.git"
-BRANCH="dev"
+BRANCH="main"
 
 # Define directories
 APP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/gitRE"
