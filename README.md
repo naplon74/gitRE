@@ -60,13 +60,14 @@ Logs are saved in `~/.local/state/gitRE/logs.txt`.
 
 ## Uninstall
 
-```bash
+```bash    <img width="1150" height="567" alt="Screenshot From 2026-09-28 19-59-29" src="https://github.com/user-attachments/assets/5796767f-9480-46d9-869d-92d370a67298" />
+
 curl -fsSL https://raw.githubusercontent.com/naplon74/git_RE/main/uninstall.sh | bash
 ```
 
 Your config and logs are kept.
 
-## Project Structure (Portable version - v1.2)
+## Project Structure (Portable version - v1.1)
 
     git_RE/
     ├── config.json
@@ -79,7 +80,7 @@ Your config and logs are kept.
 
 ## Exemple output
 
-<img width="1150" height="500" alt="Screenshot From 2026-09-24 16-41-13" src="https://github.com/user-attachments/assets/faab7c72-fcb5-433e-9d94-acf217c7055a" />
+<img width="1150" height="567" alt="Screenshot From 2026-09-28 20-01-20" src="https://github.com/user-attachments/assets/a7054db2-4d81-4191-a3dd-c50bb6d78f7d" />
 
 >[!NOTE]
 >This is a demo image.
