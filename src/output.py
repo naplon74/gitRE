@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
 import json
+import os
+from pathlib import Path
+
 from rich.console import Console
 from rich.table import Table
 from rich import box
@@ -8,12 +11,23 @@ from rich.text import Text
 
 console = Console()
 
-with open("../repos_status.json") as f:
+# Define state directory
+STATE_DIR = Path(
+    os.environ.get(
+        "XDG_STATE_HOME",
+        Path.home() / ".local" / "state"
+    )
+) / "gitRE"
+
+OUTPUT_FILE = STATE_DIR / "repos_status.json"
+LOG_FILE = STATE_DIR / "logs.txt"
+
+with open(OUTPUT_FILE) as f:
     repos = json.load(f)
 
 table = Table(
     title="Git Repo Extension",
-    caption="Git Repo Extension v.1.1 - By naplon_\n Logs can be found in logs.txt",
+    caption=f"Git Repo Extension v1.1 - By naplon_\nLogs can be found in {LOG_FILE}",
     box=box.ROUNDED,
     show_header=True,
     header_style="bold cyan"
