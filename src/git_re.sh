@@ -17,8 +17,8 @@ LOG_FILE="$STATE_DIR/logs.txt"
 mkdir -p "$STATE_DIR"
 
 # Default git & python directory (pulls from config.json using jq)
-GIT=$(jq -r '.gith_path' "$CONFIG_FILE")
-PYTHON=$(jq -r '.python3_path' "$CONFIG_FILE")
+GIT="$(jq -r '.git_path // .gith_path // empty' "$CONFIG_FILE" 2>/dev/null || true)"
+PYTHON="$(jq -r '.python3_path // empty' "$CONFIG_FILE" 2>/dev/null || true)"
 
 echo "Git_RE $VERSION"
 echo "Git_RE $VERSION logs" > "$LOG_FILE"
