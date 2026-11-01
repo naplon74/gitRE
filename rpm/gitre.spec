@@ -39,6 +39,9 @@ python3 -m py_compile src/output.py
 install -Dpm 0755 src/git_re.sh \
     %{buildroot}%{_libexecdir}/gitre/git_re.sh
 
+install -Dpm 0644 LICENSE \
+    %{buildroot}%{_licensedir}/%{name}/LICENSE
+
 install -Dpm 0644 src/output.py \
     %{buildroot}%{_libexecdir}/gitre/output.py
 
@@ -55,6 +58,7 @@ chmod 0755 %{buildroot}%{_bindir}/gitRE
 %{_bindir}/gitRE
 %{_libexecdir}/gitre/git_re.sh
 %{_libexecdir}/gitre/output.py
+%license %{_licensedir}/%{name}/LICENSE
 
 %changelog
 * Sun Nov 01 2026 Naplon <naplon@example.com> - 1.2-1
