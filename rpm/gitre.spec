@@ -42,7 +42,7 @@ install -Dpm 0755 src/git_re.sh \
 install -Dpm 0644 LICENSE \
     %{buildroot}%{_licensedir}/%{name}/LICENSE
 
-install -Dpm 0644 src/output.py \
+install -Dpm 0755 src/output.py \
     %{buildroot}%{_libexecdir}/gitre/output.py
 
 mkdir -p %{buildroot}%{_bindir}
@@ -59,7 +59,8 @@ chmod 0755 %{buildroot}%{_bindir}/gitRE
 %{_libexecdir}/gitre/git_re.sh
 %{_libexecdir}/gitre/output.py
 %license %{_licensedir}/%{name}/LICENSE
+%doc README.md
 
 %changelog
-* Sun Nov 01 2026 Naplon <naplon@example.com> - 1.2-1
+* Sun Nov 01 2026 Naplon <naplon@ik.me.com> - 1.2-1
 - Initial RPM release
