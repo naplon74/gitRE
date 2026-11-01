@@ -34,6 +34,19 @@ Then run it from anywhere:
 gitRE
 ```
 
+## Copr install
+
+```bash
+sudo dnf copr enable naplon74/repo
+sudo dnf install gitre
+```
+
+Run it with 
+
+```bash
+gitRE
+```
+
 To update, run the install command again.
 
 >[!TIP]

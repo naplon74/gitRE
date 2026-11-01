@@ -2,23 +2,26 @@
 
 VERSION="v1.2"
 
+# Define application directory
+SCRIPT_PATH="$(readlink -f -- "${BASH_SOURCE[0]}")"
+APP_DIR="$(dirname "$SCRIPT_PATH")"
+
 # Define XDG directories
-APP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/gitRE"
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/gitRE"
 STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/gitRE"
 
 # Define application paths
 CONFIG_FILE="$CONFIG_DIR/config.json"
 OUTPUT_FILE="$STATE_DIR/repos_status.json"
-PYTHON_SCRIPT="$APP_DIR/src/output.py"
+PYTHON_SCRIPT="$APP_DIR/output.py"
 LOG_FILE="$STATE_DIR/logs.txt"
 
 # Create state directory if it doesn't exist
 mkdir -p "$STATE_DIR"
 
 # Default git & python directory (pulls from config.json using jq)
-GIT=$(jq -r '.gith_path' "$CONFIG_FILE")
-PYTHON=$(jq -r '.python3_path' "$CONFIG_FILE")
+GIT="$(jq -r '.git_path // .gith_path // empty' "$CONFIG_FILE" 2>/dev/null || true)"
+PYTHON="$(jq -r '.python3_path // empty' "$CONFIG_FILE" 2>/dev/null || true)"
 
 echo "Git_RE $VERSION"
 echo "Git_RE $VERSION logs" > "$LOG_FILE"
