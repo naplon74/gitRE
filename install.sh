@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 # Define repository
 REPO_URL="https://github.com/naplon74/gitRE.git"
 BRANCH="main"
@@ -21,23 +23,33 @@ for command in git python3 jq; do
     fi
 done
 
+# Check Python dependencies
+if ! python3 -c "import rich" >/dev/null 2>&1; then
+    echo "[ERROR] Python package 'rich' wasn't found."
+    echo "[INFO] Install it using your distribution's package manager."
+    exit 1
+fi
+
 # Create directories
 mkdir -p "$CONFIG_DIR"
 mkdir -p "$STATE_DIR"
 mkdir -p "$BIN_DIR"
 
-# Clone repository
+# Clone or update repository
 if [[ -d "$APP_DIR/.git" ]]; then
-    echo "[INFO] Git_RE is already installed."
-    echo "[INFO] Updating existing installation..."
+    echo "[INFO] Existing installation found."
+    echo "[INFO] Updating Git_RE..."
 
     git -C "$APP_DIR" fetch origin "$BRANCH" --quiet
     git -C "$APP_DIR" checkout "$BRANCH" --quiet
-    git -C "$APP_DIR" pull origin "$BRANCH" --quiet
+    git -C "$APP_DIR" pull --ff-only origin "$BRANCH" --quiet
 else
-    echo "[INFO] Downloading Git_RE from $BRANCH..."
+    echo "[INFO] Downloading Git_RE..."
 
-    rm -rf "$APP_DIR"
+    if [[ -e "$APP_DIR" ]]; then
+        echo "[ERROR] $APP_DIR already exists and isn't a Git repository."
+        exit 1
+    fi
 
     git clone \
         --branch "$BRANCH" \
@@ -47,40 +59,25 @@ else
         "$APP_DIR"
 fi
 
-# Create Python virtual environment
-if [[ ! -d "$APP_DIR/.venv" ]]; then
-    echo "[INFO] Creating Python virtual environment..."
-    python3 -m venv "$APP_DIR/.venv"
-fi
-
-# Install Python dependencies
-echo "[INFO] Installing Python dependencies..."
-"$APP_DIR/.venv/bin/python" -m pip install --quiet --upgrade pip
-"$APP_DIR/.venv/bin/python" -m pip install --quiet rich
-
-# Create default config
+# Create default configuration
 if [[ ! -f "$CONFIG_DIR/config.json" ]]; then
-    echo "[INFO] Creating config.json..."
+    echo "[INFO] Creating default configuration..."
 
     cat > "$CONFIG_DIR/config.json" <<EOF
 {
     "gith_path": "$(command -v git)",
-    "python3_path": "$APP_DIR/.venv/bin/python"
+    "python3_path": "$(command -v python3)"
 }
 EOF
 else
-    echo "[INFO] Existing config.json found, keeping it."
+    echo "[INFO] Existing configuration found, keeping it."
 fi
 
 # Create command symlink
 ln -sf "$APP_DIR/src/git_re.sh" "$BIN_DIR/gitRE"
 
-# Make scripts executable
+# Set executable permissions
 chmod +x "$APP_DIR/src/git_re.sh"
-
-if [[ -f "$APP_DIR/uninstall.sh" ]]; then
-    chmod +x "$APP_DIR/uninstall.sh"
-fi
 
 echo
 echo "[SUCCESS] Git_RE has been installed."
@@ -91,8 +88,10 @@ echo "[INFO] Config:  $CONFIG_DIR/config.json"
 echo "[INFO] State:   $STATE_DIR"
 echo
 
-# Check if ~/.local/bin is in PATH
+# Check PATH
 if [[ ":$PATH:" != *":$BIN_DIR:"* ]]; then
-    echo "[INFO] $BIN_DIR is not currently in your PATH."
-    echo "[INFO] Add it to your shell configuration to run gitRE from anywhere."
+    echo "[WARNING] $BIN_DIR is not in your PATH."
+    echo "[INFO] Add the following to your shell configuration:"
+    echo
+    echo 'export PATH="$HOME/.local/bin:$PATH"'
 fi
