@@ -10,6 +10,8 @@ Source0:        https://github.com/naplon74/gitRE/archive/refs/heads/copr.tar.gz
 
 BuildArch:      noarch
 
+BuildRequires:  python3
+
 Requires:       bash
 Requires:       git
 Requires:       jq
