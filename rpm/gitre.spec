@@ -4,7 +4,7 @@ Version:        1.2
 Release:        1%{?dist}
 Summary:        CLI tool for monitoring local Git repositories
 
-License:        GPL-3.0-only
+License:        GPL-3.0-or-later
 URL:            https://github.com/naplon74/gitRE
 Source0:        https://github.com/naplon74/gitRE/archive/refs/heads/copr.tar.gz
 
