@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Define repository
-REPO_URL="https://github.com/naplon74/git_RE.git"
+REPO_URL="https://github.com/naplon74/gitRE.git"
 BRANCH="main"
 
 # Define directories
