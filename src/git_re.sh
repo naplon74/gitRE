@@ -2,15 +2,18 @@
 
 VERSION="v1.2"
 
+# Define application directory
+SCRIPT_PATH="$(readlink -f -- "${BASH_SOURCE[0]}")"
+APP_DIR="$(dirname "$SCRIPT_PATH")"
+
 # Define XDG directories
-APP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/gitRE"
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/gitRE"
 STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/gitRE"
 
 # Define application paths
 CONFIG_FILE="$CONFIG_DIR/config.json"
 OUTPUT_FILE="$STATE_DIR/repos_status.json"
-PYTHON_SCRIPT="$APP_DIR/src/output.py"
+PYTHON_SCRIPT="$APP_DIR/output.py"
 LOG_FILE="$STATE_DIR/logs.txt"
 
 # Create state directory if it doesn't exist
