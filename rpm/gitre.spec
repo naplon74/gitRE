@@ -1,4 +1,3 @@
-
 Name:           gitre
 Version:        1.3
 Release:        1%{?dist}
@@ -34,10 +33,14 @@ changes, and commits ahead or behind their remote branches.
 # No compilation required.
 
 %check
+bash -n src/git_re.sh
 bash -n src/main.sh
 python3 -m py_compile src/output.py
 
 %install
+install -Dpm 0755 src/git_re.sh \
+    %{buildroot}%{_libexecdir}/gitre/git_re.sh
+
 install -Dpm 0755 src/main.sh \
     %{buildroot}%{_libexecdir}/gitre/main.sh
 
@@ -51,7 +54,7 @@ mkdir -p %{buildroot}%{_bindir}
 
 cat > %{buildroot}%{_bindir}/gitRE <<'EOF'
 #!/bin/sh
-exec %{_libexecdir}/gitre/main.sh "$@"
+exec %{_libexecdir}/gitre/git_re.sh "$@"
 EOF
 
 chmod 0755 %{buildroot}%{_bindir}/gitRE
@@ -69,4 +72,3 @@ chmod 0755 %{buildroot}%{_bindir}/gitRE
 
 * Sun Nov 01 2026 Naplon <naplon@ik.me.com> - 1.2-1
 - Initial RPM release
-
