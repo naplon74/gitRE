@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 
 set -e
@@ -5,6 +6,7 @@ set -e
 # Define repository
 REPO_URL="https://github.com/naplon74/gitRE.git"
 BRANCH="main"
+VERSION="v1.2"
 
 # Define directories
 APP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/gitRE"
@@ -12,13 +14,17 @@ CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/gitRE"
 STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/gitRE"
 BIN_DIR="${XDG_BIN_HOME:-$HOME/.local/bin}"
 
-echo "[INFO] Installing Git_RE v1.2..."
+MAIN_SCRIPT="$APP_DIR/src/main.sh"
+OUTPUT_SCRIPT="$APP_DIR/src/output.py"
+CONFIG_FILE="$CONFIG_DIR/config.json"
+
+echo "[INFO] Installing Git_RE $VERSION..."
 
 # Check required commands
-for command in git python3 jq; do
-    if ! command -v "$command" >/dev/null 2>&1; then
-        echo "[ERROR] $command wasn't found."
-        echo "[INFO] Please install $command and run the installer again."
+for cmd in git python3 jq; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+        echo "[ERROR] $cmd wasn't found."
+        echo "[INFO] Please install $cmd and run the installer again."
         exit 1
     fi
 done
@@ -31,9 +37,7 @@ if ! python3 -c "import rich" >/dev/null 2>&1; then
 fi
 
 # Create directories
-mkdir -p "$CONFIG_DIR"
-mkdir -p "$STATE_DIR"
-mkdir -p "$BIN_DIR"
+mkdir -p "$CONFIG_DIR" "$STATE_DIR" "$BIN_DIR"
 
 # Clone or update repository
 if [[ -d "$APP_DIR/.git" ]]; then
@@ -43,13 +47,14 @@ if [[ -d "$APP_DIR/.git" ]]; then
     git -C "$APP_DIR" fetch origin "$BRANCH" --quiet
     git -C "$APP_DIR" checkout "$BRANCH" --quiet
     git -C "$APP_DIR" pull --ff-only origin "$BRANCH" --quiet
-else
-    echo "[INFO] Downloading Git_RE..."
 
+else
     if [[ -e "$APP_DIR" ]]; then
         echo "[ERROR] $APP_DIR already exists and isn't a Git repository."
         exit 1
     fi
+
+    echo "[INFO] Downloading Git_RE..."
 
     git clone \
         --branch "$BRANCH" \
@@ -59,32 +64,40 @@ else
         "$APP_DIR"
 fi
 
+# Check application files
+if [[ ! -f "$MAIN_SCRIPT" || ! -f "$OUTPUT_SCRIPT" ]]; then
+    echo "[ERROR] Application files are missing."
+    exit 1
+fi
+
 # Create default configuration
-if [[ ! -f "$CONFIG_DIR/config.json" ]]; then
+if [[ ! -f "$CONFIG_FILE" ]]; then
     echo "[INFO] Creating default configuration..."
 
-    cat > "$CONFIG_DIR/config.json" <<EOF
-{
-    "gith_path": "$(command -v git)",
-    "python3_path": "$(command -v python3)"
-}
-EOF
+    jq -n \
+        --arg git_path "$(command -v git)" \
+        --arg python3_path "$(command -v python3)" \
+        '{
+            git_path: $git_path,
+            python3_path: $python3_path
+        }' > "$CONFIG_FILE"
 else
     echo "[INFO] Existing configuration found, keeping it."
 fi
 
-# Create command symlink
-ln -sf "$APP_DIR/src/git_re.sh" "$BIN_DIR/gitRE"
-
 # Set executable permissions
-chmod +x "$APP_DIR/src/git_re.sh"
+chmod +x "$MAIN_SCRIPT"
+chmod +x "$OUTPUT_SCRIPT"
+
+# Create command symlink
+ln -sfn "$MAIN_SCRIPT" "$BIN_DIR/gitRE"
 
 echo
 echo "[SUCCESS] Git_RE has been installed."
 echo
 echo "[INFO] Branch:  $BRANCH"
 echo "[INFO] Command: $BIN_DIR/gitRE"
-echo "[INFO] Config:  $CONFIG_DIR/config.json"
+echo "[INFO] Config:  $CONFIG_FILE"
 echo "[INFO] State:   $STATE_DIR"
 echo
 
@@ -95,3 +108,4 @@ if [[ ":$PATH:" != *":$BIN_DIR:"* ]]; then
     echo
     echo 'export PATH="$HOME/.local/bin:$PATH"'
 fi
+
