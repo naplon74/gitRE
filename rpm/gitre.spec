@@ -61,6 +61,7 @@ chmod 0755 %{buildroot}%{_bindir}/gitRE
 
 %files
 %{_bindir}/gitRE
+%{_libexecdir}/gitre/git_re.sh
 %{_libexecdir}/gitre/main.sh
 %{_libexecdir}/gitre/output.py
 %license %{_licensedir}/%{name}/LICENSE
