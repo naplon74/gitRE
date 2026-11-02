@@ -1,5 +1,10 @@
 # Git Repo Extension - Git_RE
 
+<a href="https://copr.fedorainfracloud.org/coprs/naplon74/repo/package/gitre/"><img src="https://copr.fedorainfracloud.org/coprs/naplon74/repo/package/gitre/status_image/last_build.png" /></a>
+
+![Version](https://img.shields.io/badge/Version-1.2-blue?style=for-the-badge)
+
+
 Simple multi-repository git status tool for Linux.
 
 It scans your system for git repositories, collects their status, and displays a clean summary.
