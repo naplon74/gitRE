@@ -27,7 +27,7 @@ with open(OUTPUT_FILE) as f:
 
 table = Table(
     title="Git Repo Extension",
-    caption=f"Git Repo Extension COPR-v1.3.0 - By naplon74\nLogs can be found in {LOG_FILE}",
+    caption=f"Git Repo Extension GH-v1.3.0 - By naplon74\nLogs can be found in {LOG_FILE}",
     box=box.ROUNDED,
     show_header=True,
     header_style="bold cyan"
