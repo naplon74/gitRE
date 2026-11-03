@@ -1,75 +1,86 @@
-# Git Repo Extension - Git_RE
+# gitRE - DEV BRANCH
 
-Simple multi-repository git status tool for Linux.
+<p align="center">
+  <img src="https://img.shields.io/badge/gitRE-development%20build-orange?style=for-the-badge&logo=git&logoColor=white" />
+  <img src="https://img.shields.io/badge/branch-dev-red?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/stability-questionable-critical?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/production-absolutely%20not-black?style=for-the-badge" />
+</p>
 
-It scans your system for git repositories, collects their status, and displays a clean summary.
+<p align="center">
+  <b>The development branch.</b><br>
+  The 30 commits a minute zone.
+</p>
 
-## Features
+<p align="center">
+  <img src="https://img.shields.io/github/last-commit/naplon74/gitRE/dev?style=flat-square&logo=github&label=last%20commit" />
+  <img src="https://img.shields.io/github/commit-activity/m/naplon74/gitRE?branch=dev&style=flat-square&label=commit%20activity" />
+  <img src="https://img.shields.io/github/commit-activity/y/naplon74/gitRE?branch=dev&style=flat-square&label=yearly%20activity" />
+  <img src="https://img.shields.io/github/contributors/naplon74/gitRE?style=flat-square&label=contributors" />
+</p>
 
-- Finds all git repositories under your home directory
-- Shows branch and dirty/clean status
-- Pretty table output with [rich](https://pypi.org/project/rich/)
-- Configurable path via `config.json`
+<p align="center">
+  <img src="https://img.shields.io/github/stars/naplon74/gitRE?style=flat-square&logo=github&label=stars" />
+  <img src="https://img.shields.io/github/forks/naplon74/gitRE?style=flat-square&logo=github&label=forks" />
+  <img src="https://img.shields.io/github/watchers/naplon74/gitRE?style=flat-square&logo=github&label=watchers" />
+  <img src="https://img.shields.io/github/issues/naplon74/gitRE?style=flat-square&label=open%20issues" />
+  <img src="https://img.shields.io/github/issues-pr/naplon74/gitRE?style=flat-square&label=pull%20requests" />
+</p>
 
-## Requirements
+<p align="center">
+  <img src="https://img.shields.io/github/languages/top/naplon74/gitRE?style=flat-square&logo=gnubash&label=primary%20language" />
+  <img src="https://img.shields.io/github/languages/count/naplon74/gitRE?style=flat-square&label=languages" />
+  <img src="https://img.shields.io/github/repo-size/naplon74/gitRE?style=flat-square&label=repository%20size" />
+  <img src="https://img.shields.io/github/directory-file-count/naplon74/gitRE/dev?style=flat-square&label=files" />
+</p>
 
-- `bash`
-- `git`
-- `jq`
-- `python3`
+<p align="center">
+  <img src="https://img.shields.io/badge/status-experimental-orange?style=flat-square" />
+  <img src="https://img.shields.io/badge/testing-manual-blue?style=flat-square" />
+  <img src="https://img.shields.io/badge/code%20review-trust%20issues-yellow?style=flat-square" />
+  <img src="https://img.shields.io/badge/bugs-probably%20yes-red?style=flat-square" />
+  <img src="https://img.shields.io/badge/works%20on%20my%20machine-hopefully-success?style=flat-square" />
+</p>
 
-Needed for python : [rich](https://pypi.org/project/rich/)
+---
 
-## Setup
+## Branch information
 
-1. Edit `config.json` and set your preferred path (default is /usr/bin/git):
+| Branch | Purpose | Stability |
+|:---|:---|:---|
+| `main` | Stable development / releases | Relatively stable |
+| `copr` | Same as main but can be installed using `dnf` | Relatively stable |
+| `dev` | Testing, experiments and new features | Unstable |
 
-```json
-{
-    "path_to_git": "/home/yourusername/Projects"
-}
-``` 
+**This branch is NOT intended for production use.**
 
->[!TIP]
->The default path usualy always works. If you installed git on your system and `/usr/bin/git` isn't the path then use `where git` or `whereis git` to locate it.
+Expect:
+- Breaking changes.
+- Incomplete features.
+- Unexpected behaviour.
+- Temporary workarounds.
+- Code that will probably be changed by tomorrow.
 
-2. Make the script executable:
+## Getting started
+
+Clone the repository and switch to the development branch:
 
 ```bash
-chmod +x src/git_re.sh
+git clone https://github.com/naplon74/gitRE.git
+cd gitRE
+
+git switch dev
 ```
 
-## Usage
-```bash
-./src/git_re.sh
-```
 
-## Project Structure
+## Disclaimer
 
-    git_ME/
-    ├── config.json
-    ├── repos_status.json
-    ├── src/
-    │   ├── git_re.sh
-    │   └── output.py
-    └── README.md
+This is a development branch.
+Oh yeah and ig ill also have a lot of useful badge sit there cuz why not?
 
-## Exemple output
+If it doesnt works, that's normal.
+If everything works, congratulations.
 
-<img width="1150" height="500" alt="Screenshot From 2026-09-24 16-41-13" src="https://github.com/user-attachments/assets/faab7c72-fcb5-433e-9d94-acf217c7055a" />
+---
 
->[!NOTE]
->This is a demo image.
->`Dirty` means they are modified, added, or deleted files that haven't been committed yet.
-
-## v1.1
-What's new?
-
-- Added ahead / behind in the python output table.
-- Added logs.
-- Added / modified relevents text.
-
-And that's about it!
-
-## v1.0
-Inital release.
+Made with ❤️ by naplon74
