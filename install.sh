@@ -6,7 +6,7 @@ set -e
 # Define repository
 REPO_URL="https://github.com/naplon74/gitRE.git"
 BRANCH="main"
-VERSION="v1.2"
+VERSION="v1.3.0"
 
 # Define directories
 APP_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/gitRE"
@@ -14,6 +14,7 @@ CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/gitRE"
 STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/gitRE"
 BIN_DIR="${XDG_BIN_HOME:-$HOME/.local/bin}"
 
+CLI_FILE="$APP_DIR/src/git_re.sh"
 MAIN_SCRIPT="$APP_DIR/src/main.sh"
 OUTPUT_SCRIPT="$APP_DIR/src/output.py"
 CONFIG_FILE="$CONFIG_DIR/config.json"
@@ -86,11 +87,12 @@ else
 fi
 
 # Set executable permissions
+chmod +x "$CLI_FILE"
 chmod +x "$MAIN_SCRIPT"
 chmod +x "$OUTPUT_SCRIPT"
 
 # Create command symlink
-ln -sfn "$MAIN_SCRIPT" "$BIN_DIR/gitRE"
+ln -sfn "$CLI_FILE" "$BIN_DIR/gitRE"
 
 echo
 echo "[SUCCESS] Git_RE has been installed."

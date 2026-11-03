@@ -2,7 +2,7 @@
 
 <a href="https://copr.fedorainfracloud.org/coprs/naplon74/repo/package/gitre/"><img src="https://copr.fedorainfracloud.org/coprs/naplon74/repo/package/gitre/status_image/last_build.png" /></a>
 
-![Version](https://img.shields.io/badge/Version-1.2-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-1.3.0-blue?style=for-the-badge)
 
 
 Simple multi-repository git status tool for Linux.
@@ -123,3 +123,4 @@ And that's about it!
 
 ## v1.0
 Inital release.
+
