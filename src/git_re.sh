@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
 VERSION="GH-v1.3.0"
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-MAIN_SCRIPT="$SCRIPT_DIR/main.sh"
-PYTHON_SCRIPT="$SCRIPT_DIR/output.py"
+SCRIPT_PATH="$(readlink -f -- "${BASH_SOURCE[0]}")"
+APP_DIR="$(dirname "$SCRIPT_PATH")"
+
+MAIN_SCRIPT="$APP_DIR/main.sh"
+PYTHON_SCRIPT="$APP_DIR/output.py"
 
 show_help() {
     echo "Usage: gitRE [COMMAND]"
@@ -36,7 +38,7 @@ case "${1:-}" in
     	exec python3 "$PYTHON_SCRIPT"
     	;;
     "")
-        exec bash "$MAIN_SCRIPT"
+        exec "$MAIN_SCRIPT"
         ;;
     *)
         echo "Error: Unknown command '$1'"
