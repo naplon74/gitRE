@@ -1,4 +1,4 @@
-# Git Repo Extension - Git_RE
+# Git Repo Extension - GitRE
 
 <a href="https://copr.fedorainfracloud.org/coprs/naplon74/repo/package/gitre/"><img src="https://copr.fedorainfracloud.org/coprs/naplon74/repo/package/gitre/status_image/last_build.png" /></a>
 
@@ -39,26 +39,10 @@ Then run it from anywhere:
 gitRE
 ```
 
-## Copr install
 
-```bash
-sudo dnf copr enable naplon74/repo
-sudo dnf install gitre
-```
-
-Run it with 
-
-```bash
-gitRE
-```
-
-To update, run the install command again.
 
 >[!TIP]
->If `gitRE` isn't found after installing, add `~/.local/bin` to your `PATH`:
->```bash
->export PATH="$HOME/.local/bin:$PATH"
->```
+>If you use a Fedora based distro head to the [copr](https://github.com/naplon74/gitRE/tree/copr) breanch to install with dnf.
 
 ## Configuration
 
@@ -70,9 +54,6 @@ The config file is created by the installer at `~/.config/gitRE/config.json`:
     "python3_path": "/home/yourusername/.local/share/gitRE/.venv/bin/python"
 }
 ```
-
->[!TIP]
->If Git_RE can't find git, use `where git` or `whereis git` to locate it and update `gith_path`.
 
 Logs are saved in `~/.local/state/gitRE/logs.txt`.
 
@@ -103,6 +84,15 @@ Your config and logs are kept.
 >[!NOTE]
 >This is a demo image.
 >`Dirty` means they are modified, added, or deleted files that haven't been committed yet.
+
+## v1.3.0
+What's new?
+
+- COPR release
+- New cli command:
+     - --help
+     - --version
+     - --skip (Skip the scan and only runs the Python Script)
 
 ## v1.2
 What's new?
