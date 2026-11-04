@@ -21,7 +21,14 @@ show_version() {
     echo "gitRE - Check the repo for update"
     echo
     echo "Version: $VERSION"
-    echo "Source: Fedora COPR"
+    echo "Source: Github"
+    . /etc/os-release
+    echo "OS : $NAME $VERSION_ID"
+    echo "--------"
+    echo "Script : ${XDG_DATA_HOME:-$HOME/.local/share}/gitRE"
+    echo "Config : ${XDG_CONFIG_HOME:-$HOME/.config}/gitRE"
+    echo "Logs : ${XDG_STATE_HOME:-$HOME/.local/state}/gitRE"
+    echo "--------"
     echo "Author: naplon74"
     echo "License: GPL-3.0-or-later"
     echo "Repo: https://github.com/naplon74/gitRE"
