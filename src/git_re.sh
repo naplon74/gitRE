@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 VERSION="COPR-v1.3.0"
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
@@ -20,6 +20,13 @@ show_version() {
     echo
     echo "Version: $VERSION"
     echo "Source: Fedora COPR"
+    . /etc/os-release
+    echo "OS : $NAME $VERSION_ID"
+    echo "--------"
+    echo "Config : ${XDG_CONFIG_HOME:-$HOME/.config}/gitRE"
+    echo "Logs : ${XDG_STATE_HOME:-$HOME/.local/state}/gitRE"
+    echo "Script : /usr/libexec/gitre"
+    echo "--------"
     echo "Author: naplon74"
     echo "License: GPL-3.0-or-later"
     echo "Repo: https://github.com/naplon74/gitRE"
