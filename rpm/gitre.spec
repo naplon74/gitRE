@@ -1,6 +1,6 @@
 Name:           gitre
 Version:        1.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        CLI tool for monitoring local Git repositories
 
 License:        GPL-3.0-or-later
