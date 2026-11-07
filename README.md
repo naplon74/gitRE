@@ -45,7 +45,7 @@ To update, run the install command again.
 
 ## Exemple output
 
-<img width="1150" height="567" alt="Screenshot From 2026-09-28 20-01-20" src="https://github.com/user-attachments/assets/a7054db2-4d81-4191-a3dd-c50bb6d78f7d" />
+<img width="1150" height="889" alt="Screenshot From 2026-11-07 14-19-09" src="https://github.com/user-attachments/assets/68c8051f-e744-4762-ad7d-1afb2b7b0c2c" />
 
 >[!NOTE]
 >This is a demo image.
