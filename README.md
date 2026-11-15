@@ -25,6 +25,24 @@ It scans your system for git repositories, collects their status, and displays a
 
 The Python package [rich](https://pypi.org/project/rich/) is installed automatically by the installer.
 
+## Compatibility
+
+| Distro | Fedora 43- | Fedora 44 | Fedora 45 | AlmaLinux 9 | AlmaLinux 10 | Rocky Linux 9 | Rocky Linux 10 | Other RH Distro |
+|:------:|:----------:|:---------:|:---------:|:-----------:|:------------:|:-------------:|:--------------:|:---------------:|
+| Status |     ❓     |     ✅    |     ✅    |      ℹ️     |      ℹ️      |       ℹ️      |       ℹ️       |        ❓       |
+
+- ❓: Untested
+- ✅ : Works out of the box
+- ℹ️ : Works but may require some tweaks
+
+>[!NOTE]
+>If Python Rich is not found when you try to install gitre then use those commands:
+>```Bash
+>sudo dnf install dnf-plugins-core epel-release
+>sudo dnf config-manager --set-enabled crb
+>sudo dnf makecache
+>sudo dnf install gitre
+
 ## Copr install
 
 >[!IMPORTANT]
